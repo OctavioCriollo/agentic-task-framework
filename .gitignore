@@ -1,0 +1,27 @@
+# Python Virtual Environment
+venv/
+env/
+ENV/
+*.pyc
+__pycache__/
+
+# Task outputs
+tasks/*/output/
+tasks/*/context/
+
+# Memory backups (optional: comment out if you want to version them)
+.memory_backups/
+tasks/*/.memory_backups/
+
+# Task registry (optional: keep if you want to track tasks in git)
+# .task_registry.json
+
+# Temporary files
+/tmp/
+*.tmp
+*.log
+
+# OS specific
+.DS_Store
+Thumbs.db
+desktop.ini

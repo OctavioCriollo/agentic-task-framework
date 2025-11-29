@@ -1,0 +1,8 @@
+# Agentic Task Framework - Dependencies
+# Currently uses only Python standard library
+# No external dependencies required
+
+# Future dependencies can be added here
+# Example:
+# requests>=2.31.0
+# pyyaml>=6.0

@@ -1,0 +1,32 @@
+{
+  "alwaysThinkingEnabled": true,
+  "model": "claude-sonnet-4-5-20250929",
+
+  "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "Bash(python3 core/*)",
+      "Bash(python core/*)",
+      "Bash(ls *)",
+      "Bash(cd *)",
+      "Edit(CLAUDE.md)",
+      "Write(CLAUDE.md)",
+      "Write(core/*)",
+      "Write(tasks/*)",
+      "Read(tasks/*)",
+      "Read(core/*)"
+    ],
+    "deny": [],
+    "ask": []
+  },
+
+  "hooks": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "echo '🚀 Framework Agéntico iniciado - Memoria cargada'",
+        "description": "Mensaje de bienvenida"
+      }
+    ]
+  }
+}
