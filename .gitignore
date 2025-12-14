@@ -10,8 +10,8 @@ tasks/*/output/
 tasks/*/context/
 
 # Memory backups (optional: comment out if you want to version them)
-.memory_backups/
-tasks/*/.memory_backups/
+# .memory_backups/
+# tasks/*/.memory_backups/
 
 # Task registry (optional: keep if you want to track tasks in git)
 # .task_registry.json
