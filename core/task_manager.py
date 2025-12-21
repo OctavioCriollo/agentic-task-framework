@@ -1,5 +1,23 @@
 #!/usr/bin/env python3
 """
+⚠️  DEPRECATED - DO NOT USE ⚠️
+
+Este script está OBSOLETO a partir de Framework v2.0.
+
+El framework ahora usa el Task tool de Claude Code para lanzar agentes en background.
+Ya NO se abren ventanas separadas de Claude Code.
+
+Para usar el framework correctamente:
+1. Inicia: ./start_coordinator.sh
+2. Conversa con el coordinador
+3. El coordinador lanza agentes usando Task tool (background, sin ventanas)
+4. Todo se coordina desde una sola ventana
+
+Ver CLAUDE.md y README.md para documentación actualizada.
+
+---
+
+LEGACY CODE BELOW (Framework v1.0)
 Agentic Task Framework - Task Manager
 Professional task orchestration system
 """
@@ -132,7 +150,7 @@ class TaskManager:
                  '-e', 'bash', launcher_script, task_dir],
                 cwd=task_dir
             )
-            print(f"✓ Agente especializado lanzado")
+            print(f"[OK] Agente especializado lanzado")
         except FileNotFoundError:
             # Fallback: try direct bash
             try:
@@ -140,9 +158,9 @@ class TaskManager:
                     ['bash', launcher_script, task_dir],
                     cwd=task_dir
                 )
-                print(f"✓ Agente lanzado (modo compatibilidad)")
+                print(f"[OK] Agente lanzado (modo compatibilidad)")
             except Exception as e:
-                print(f"✗ Error al lanzar agente: {e}", file=sys.stderr)
+                print(f"[ERROR] Error al lanzar agente: {e}", file=sys.stderr)
 
     def _register_task(self, task_metadata: Dict):
         """Register task in registry"""
