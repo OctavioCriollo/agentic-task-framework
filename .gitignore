@@ -1,5 +1,6 @@
 # Python Virtual Environment
 venv/
+.venv/
 env/
 ENV/
 *.pyc
@@ -25,3 +26,6 @@ tasks/*/context/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Claude Code settings (keep local settings private)
+.claude/settings.local.json

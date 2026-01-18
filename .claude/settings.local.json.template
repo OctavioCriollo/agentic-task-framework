@@ -6,46 +6,54 @@
       "Bash(python core/project_manager.py get:*)",
       "Bash(python core/framework_validator.py validate-project:*)",
       "Bash(python core/fix_project_structure.py:*)",
+
       "# Testing (SAFE)",
       "Bash(pytest tests/)",
       "Bash(pytest tests/ -v)",
       "Bash(pytest tests/ --cov=core)",
       "Bash(pytest tests/ --cov=core --cov-report=term-missing)",
+
       "# Dependency management (RESTRICTED)",
       "Bash(pip list)",
       "Bash(pip show:*)",
+
       "# File operations (SAFE)",
       "Bash(ls:*)",
       "Bash(cat:*)",
       "Bash(grep:*)",
       "Bash(wc:*)",
       "Bash(tree:*)",
+
       "# Version control (SAFE)",
       "Bash(git add:*)",
       "Bash(git commit -m:*)",
       "Bash(git status)",
       "Bash(git diff)",
       "Bash(git log:*)",
+
       "# Environment (READ-ONLY)",
       "Bash(python --version)",
       "Bash(py --version)",
       "Bash(env)",
+
       "# Virtual environment activation (SAFE)",
       "Bash(source .venv/Scripts/activate)",
+
       "# Web access (RESTRICTED to scientific domains)",
       "WebSearch",
       "WebFetch(domain:pmc.ncbi.nlm.nih.gov)",
-      "WebFetch(domain:pubmed.ncbi.nlm.nih.gov)",
-      "Bash(pytest:*)"
+      "WebFetch(domain:pubmed.ncbi.nlm.nih.gov)"
     ],
     "deny": [],
     "ask": [
       "# Require approval for package installation",
       "Bash(pip install *)",
       "Bash(pip uninstall *)",
+
       "# Require approval for arbitrary code execution",
       "Bash(python -c *)",
       "Bash(py -c *)",
+
       "# Require approval for other python/bash commands",
       "Bash(python:*)",
       "Bash(bash:*)"
