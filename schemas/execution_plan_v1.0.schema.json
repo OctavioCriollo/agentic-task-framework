@@ -1,0 +1,232 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://forge-framework.org/schemas/execution-plan/v1.0",
+  "title": "Forge Execution Plan v1.0",
+  "description": "Compiled execution plan generated from WorkGraph",
+  "type": "object",
+  "required": ["version", "workgraph_id", "stages", "state"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "workgraph_id": {
+      "type": "string",
+      "description": "Reference to source WorkGraph"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "state": {
+      "type": "string",
+      "enum": ["PENDING", "VALIDATED", "READY", "RUNNING", "PAUSED", "COMPLETED", "FAILED", "ABORTED"],
+      "description": "Current state of execution plan"
+    },
+    "stages": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/execution_stage"
+      },
+      "description": "Ordered stages for execution"
+    },
+    "checkpoints": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/checkpoint"
+      },
+      "description": "Saved checkpoints for recovery"
+    },
+    "current_stage": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Index of currently executing stage"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "total_tasks": {"type": "integer"},
+        "completed_tasks": {"type": "integer"},
+        "failed_tasks": {"type": "integer"},
+        "estimated_completion": {"type": "string", "format": "date-time"},
+        "progress_percentage": {"type": "number", "minimum": 0, "maximum": 100}
+      }
+    }
+  },
+  "definitions": {
+    "execution_stage": {
+      "type": "object",
+      "required": ["stage_id", "tasks"],
+      "properties": {
+        "stage_id": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Sequential stage number"
+        },
+        "tasks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/task_execution"
+          },
+          "description": "Tasks to execute in this stage (parallel)"
+        },
+        "gates": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Gates that must pass before proceeding to next stage"
+        },
+        "state": {
+          "type": "string",
+          "enum": ["PENDING", "RUNNING", "COMPLETED", "FAILED"],
+          "default": "PENDING"
+        }
+      }
+    },
+    "task_execution": {
+      "type": "object",
+      "required": ["task_id", "agent_config", "state"],
+      "properties": {
+        "task_id": {
+          "type": "string",
+          "description": "Reference to task in WorkGraph"
+        },
+        "agent_config": {
+          "$ref": "#/definitions/agent_configuration"
+        },
+        "state": {
+          "type": "string",
+          "enum": ["DECLARED", "VALIDATED", "READY", "RUNNING", "COMPLETED", "FAILED", "RETRYING"],
+          "default": "DECLARED"
+        },
+        "runtime_info": {
+          "type": "object",
+          "properties": {
+            "started_at": {"type": "string", "format": "date-time"},
+            "completed_at": {"type": "string", "format": "date-time"},
+            "duration_seconds": {"type": "integer"},
+            "retry_count": {"type": "integer", "default": 0},
+            "exit_code": {"type": "integer"}
+          }
+        },
+        "outputs": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-z0-9_-]+$": {
+              "type": "object",
+              "properties": {
+                "path": {"type": "string"},
+                "checksum": {"type": "string"},
+                "size_bytes": {"type": "integer"},
+                "validated": {"type": "boolean"}
+              }
+            }
+          }
+        },
+        "quality_results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "check_type": {"type": "string"},
+              "passed": {"type": "boolean"},
+              "severity": {"type": "string"},
+              "message": {"type": "string"}
+            }
+          }
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "timestamp": {"type": "string", "format": "date-time"},
+              "error_type": {"type": "string"},
+              "message": {"type": "string"},
+              "stack_trace": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "agent_configuration": {
+      "type": "object",
+      "required": ["role", "prompt_path", "working_directory"],
+      "properties": {
+        "role": {
+          "type": "string",
+          "description": "Agent specialization role"
+        },
+        "prompt_path": {
+          "type": "string",
+          "description": "Path to agent prompt file"
+        },
+        "working_directory": {
+          "type": "string",
+          "description": "Task working directory"
+        },
+        "context_files": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Additional context files to provide"
+        },
+        "tool_permissions": {
+          "type": "object",
+          "properties": {
+            "allowed": {"type": "array", "items": {"type": "string"}},
+            "forbidden": {"type": "array", "items": {"type": "string"}}
+          }
+        },
+        "resource_limits": {
+          "type": "object",
+          "properties": {
+            "timeout_seconds": {"type": "integer"},
+            "max_tokens": {"type": "integer"},
+            "max_memory_mb": {"type": "integer"}
+          }
+        }
+      }
+    },
+    "checkpoint": {
+      "type": "object",
+      "required": ["checkpoint_id", "created_at", "state_snapshot"],
+      "properties": {
+        "checkpoint_id": {
+          "type": "string",
+          "description": "Unique checkpoint identifier"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "trigger": {
+          "type": "string",
+          "enum": ["manual", "stage_complete", "task_complete", "error", "scheduled"],
+          "description": "What triggered checkpoint creation"
+        },
+        "state_snapshot": {
+          "type": "object",
+          "properties": {
+            "current_stage": {"type": "integer"},
+            "completed_tasks": {"type": "array", "items": {"type": "string"}},
+            "failed_tasks": {"type": "array", "items": {"type": "string"}},
+            "artifact_checksums": {"type": "object"}
+          },
+          "description": "Complete state at checkpoint time"
+        },
+        "rollback_capable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether this checkpoint supports rollback"
+        },
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "label": {"type": "string"},
+            "description": {"type": "string"},
+            "size_mb": {"type": "number"}
+          }
+        }
+      }
+    }
+  }
+}

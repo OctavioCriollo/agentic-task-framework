@@ -1,0 +1,67 @@
+{
+  "id": "metodologia-documentacion-markdown-profesional-20260120-095603",
+  "name": "Metodologia Documentacion Markdown Profesional",
+  "created": "2026-01-20T09:56:03.970699",
+  "status": "in_progress",
+  "user_request": "Investigacion exhaustiva y establecimiento de estandares profesionales para documentacion Markdown enriqueciendo sin decorar excesivamente basado en el principio de usar formato para mejorar claridad no para decorar",
+  "context": "Proyecto de auto-mejora del framework para establecer estandares claros y fundamentados de documentacion tecnica profesional",
+  "tasks": {
+    "analisis-simbolos-framework": {
+      "task_name": "analisis-simbolos-framework",
+      "description": "Analizar uso actual de simbolos en documentacion del framework",
+      "created": "2026-01-20T09:59:08.858675",
+      "status": "in_progress",
+      "prompt_file": "prompt.md",
+      "reports": []
+    },
+    "benchmarking-proyectos-externos": {
+      "task_name": "benchmarking-proyectos-externos",
+      "description": "Analizar estandares de documentacion en proyectos externos reconocidos",
+      "created": "2026-01-20T09:59:08.877243",
+      "status": "in_progress",
+      "prompt_file": "prompt.md",
+      "reports": []
+    },
+    "estandares-headers-titulos": {
+      "task_name": "estandares-headers-titulos",
+      "description": "Definir reglas para uso de simbolos en headers y titulos",
+      "created": "2026-01-20T09:59:08.895910",
+      "status": "in_progress",
+      "prompt_file": "prompt.md",
+      "reports": []
+    },
+    "estandares-tablas-profesionales": {
+      "task_name": "estandares-tablas-profesionales",
+      "description": "Establecer formato estandar para tablas con simbolos y alineacion",
+      "created": "2026-01-20T10:12:01.413663",
+      "status": "in_progress",
+      "prompt_file": "prompt.md",
+      "reports": []
+    },
+    "estandares-listas-checklists": {
+      "task_name": "estandares-listas-checklists",
+      "description": "Definir cuando usar cada tipo de lista y simbolos apropiados",
+      "created": "2026-01-20T10:12:13.640506",
+      "status": "in_progress",
+      "prompt_file": "prompt.md",
+      "reports": []
+    },
+    "guia-estilo-markdown-framework": {
+      "task_name": "guia-estilo-markdown-framework",
+      "description": "Crear documento definitivo de estilo Markdown para el framework",
+      "created": "2026-01-20T10:12:16.332872",
+      "status": "in_progress",
+      "prompt_file": "prompt.md",
+      "reports": []
+    },
+    "auditoria-docs-existentes": {
+      "task_name": "auditoria-docs-existentes",
+      "description": "Auditar documentacion existente vs nuevos estandares y corregir",
+      "created": "2026-01-20T10:12:18.708537",
+      "status": "in_progress",
+      "prompt_file": "prompt.md",
+      "reports": []
+    }
+  },
+  "synthesis": null
+}

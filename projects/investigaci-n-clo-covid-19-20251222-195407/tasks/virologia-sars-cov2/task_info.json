@@ -1,0 +1,16 @@
+{
+  "task_name": "virologia-sars-cov2",
+  "description": "Analisis virologico de SARS-CoV-2 y mecanismos de inactivacion",
+  "created": "2025-12-21T21:43:00",
+  "status": "completed",
+  "completed_at": "2025-12-21T22:14:00",
+  "prompt_file": "prompt.md",
+  "reports": [
+    "virologia_sars_cov2.md",
+    "reports/virologia_molecular_sars_cov2.md",
+    "reports/mecanismos_inactivacion_clo2.md",
+    "reports/analisis_comparativo.md",
+    "reports/completion_report.md",
+    "reports/README.md"
+  ]
+}

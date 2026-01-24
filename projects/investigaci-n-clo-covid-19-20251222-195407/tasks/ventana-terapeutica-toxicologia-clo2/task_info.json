@@ -1,0 +1,12 @@
+{
+  "task_name": "ventana-terapeutica-toxicologia-clo2",
+  "description": "Evaluacion de ventana terapeutica y balance riesgo-beneficio de ClO2 para COVID-19",
+  "created": "2025-12-26T18:10:06.974465",
+  "status": "completed",
+  "prompt_file": "prompt.md",
+  "reports": [
+    "analisis_ventana_terapeutica_balance_riesgo_beneficio.md",
+    "resumen_ejecutivo.md"
+  ],
+  "completed_at": "2025-12-26T18:10:06.974470"
+}

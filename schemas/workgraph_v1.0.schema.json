@@ -1,0 +1,379 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://forge-framework.org/schemas/workgraph/v1.0",
+  "title": "Forge WorkGraph v1.0",
+  "description": "Formal specification of an executable work graph for the Forge Agentic Framework",
+  "type": "object",
+  "required": ["version", "project", "tasks"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "1.0",
+      "description": "WorkGraph schema version"
+    },
+    "project": {
+      "type": "object",
+      "required": ["id", "name", "goal"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$",
+          "description": "Unique project identifier (kebab-case)"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 200,
+          "description": "Human-readable project name"
+        },
+        "goal": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 2000,
+          "description": "Clear description of project objective"
+        },
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "created": {"type": "string", "format": "date-time"},
+            "coordinator": {"type": "string"},
+            "priority": {"type": "string", "enum": ["low", "medium", "high", "critical"]},
+            "tags": {"type": "array", "items": {"type": "string"}}
+          }
+        }
+      }
+    },
+    "tasks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/task"
+      },
+      "description": "Collection of tasks in the work graph"
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/dependency"
+      },
+      "description": "Task dependencies defining execution order"
+    },
+    "gates": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/gate"
+      },
+      "description": "Control gates for conditional execution"
+    },
+    "triggers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/trigger"
+      },
+      "description": "Event-based triggers for task activation"
+    },
+    "artifacts": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-z0-9_-]+$": {
+          "$ref": "#/definitions/artifact"
+        }
+      },
+      "description": "Shared artifacts across tasks"
+    }
+  },
+  "definitions": {
+    "task": {
+      "type": "object",
+      "required": ["id", "role", "contract"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$",
+          "description": "Unique task identifier (kebab-case)"
+        },
+        "role": {
+          "type": "string",
+          "description": "Agent role/specialization for this task"
+        },
+        "contract": {
+          "$ref": "#/definitions/task_contract"
+        },
+        "execution": {
+          "$ref": "#/definitions/execution_config"
+        },
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "description": {"type": "string"},
+            "priority": {"type": "integer", "minimum": 1, "maximum": 10},
+            "estimated_duration": {"type": "integer", "description": "Seconds"},
+            "tags": {"type": "array", "items": {"type": "string"}}
+          }
+        }
+      }
+    },
+    "task_contract": {
+      "type": "object",
+      "required": ["inputs", "outputs"],
+      "properties": {
+        "inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/contract_input"
+          },
+          "description": "Required inputs for task execution"
+        },
+        "outputs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/contract_output"
+          },
+          "description": "Expected outputs from task execution"
+        },
+        "quality_checks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/quality_check"
+          },
+          "description": "Validation criteria for outputs"
+        },
+        "constraints": {
+          "type": "object",
+          "properties": {
+            "max_tokens": {"type": "integer", "minimum": 1000},
+            "max_files": {"type": "integer", "minimum": 1},
+            "allowed_tools": {"type": "array", "items": {"type": "string"}},
+            "forbidden_actions": {"type": "array", "items": {"type": "string"}}
+          }
+        }
+      }
+    },
+    "contract_input": {
+      "type": "object",
+      "required": ["name", "type"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$",
+          "description": "Input identifier"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["file", "directory", "artifact", "parameter", "context"],
+          "description": "Type of input"
+        },
+        "required": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether input is mandatory"
+        },
+        "schema": {
+          "type": "object",
+          "description": "Validation schema for input"
+        },
+        "source": {
+          "type": "string",
+          "description": "Source reference (artifact ID, file path, etc.)"
+        }
+      }
+    },
+    "contract_output": {
+      "type": "object",
+      "required": ["name", "path"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Output identifier"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["file", "directory", "artifact"],
+          "default": "file"
+        },
+        "path": {
+          "type": "string",
+          "description": "Relative path within task directory"
+        },
+        "schema": {
+          "type": "object",
+          "description": "Expected structure of output"
+        },
+        "format": {
+          "type": "string",
+          "enum": ["markdown", "json", "yaml", "text", "binary"],
+          "description": "Output format"
+        }
+      }
+    },
+    "quality_check": {
+      "type": "object",
+      "required": ["type", "config"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "length",
+            "format",
+            "schema",
+            "content_validation",
+            "reference_check",
+            "completeness"
+          ],
+          "description": "Type of quality check"
+        },
+        "config": {
+          "type": "object",
+          "description": "Configuration for the quality check"
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["error", "warning", "info"],
+          "default": "error",
+          "description": "Severity level if check fails"
+        }
+      }
+    },
+    "execution_config": {
+      "type": "object",
+      "properties": {
+        "timeout": {
+          "type": "integer",
+          "minimum": 60,
+          "maximum": 86400,
+          "default": 3600,
+          "description": "Maximum execution time in seconds"
+        },
+        "retry_policy": {
+          "type": "object",
+          "properties": {
+            "max_retries": {"type": "integer", "minimum": 0, "maximum": 5, "default": 3},
+            "backoff_seconds": {"type": "integer", "minimum": 1, "default": 60},
+            "retry_on": {"type": "array", "items": {"type": "string"}}
+          }
+        },
+        "checkpoint_after": {
+          "type": "boolean",
+          "default": true,
+          "description": "Create checkpoint after task completion"
+        },
+        "isolation_level": {
+          "type": "string",
+          "enum": ["full", "partial", "shared"],
+          "default": "partial",
+          "description": "Level of context isolation"
+        },
+        "resource_limits": {
+          "type": "object",
+          "properties": {
+            "max_memory_mb": {"type": "integer"},
+            "max_disk_mb": {"type": "integer"},
+            "max_network_calls": {"type": "integer"}
+          }
+        }
+      }
+    },
+    "dependency": {
+      "type": "object",
+      "required": ["from", "to"],
+      "properties": {
+        "from": {
+          "type": "string",
+          "description": "Source task ID"
+        },
+        "to": {
+          "type": "string",
+          "description": "Dependent task ID"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["finish-to-start", "finish-to-finish", "start-to-start", "artifact"],
+          "default": "finish-to-start",
+          "description": "Type of dependency"
+        },
+        "artifact": {
+          "type": "string",
+          "description": "Artifact ID if type is 'artifact'"
+        }
+      }
+    },
+    "gate": {
+      "type": "object",
+      "required": ["id", "type"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$",
+          "description": "Unique gate identifier"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["human_approval", "quality_threshold", "conditional", "time_based"],
+          "description": "Type of gate"
+        },
+        "applies_to": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Task IDs this gate applies to"
+        },
+        "condition": {
+          "type": "object",
+          "description": "Gate condition configuration"
+        }
+      }
+    },
+    "trigger": {
+      "type": "object",
+      "required": ["id", "event", "action"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$"
+        },
+        "event": {
+          "type": "string",
+          "enum": ["task_completed", "artifact_created", "gate_passed", "time_elapsed", "external_signal"]
+        },
+        "action": {
+          "type": "string",
+          "enum": ["start_task", "notify", "create_checkpoint", "abort_workflow"]
+        },
+        "target": {
+          "type": "string",
+          "description": "Target task ID or notification channel"
+        },
+        "condition": {
+          "type": "object",
+          "description": "Optional condition for trigger activation"
+        }
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "required": ["type", "path"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["file", "directory", "reference", "data"]
+        },
+        "path": {
+          "type": "string",
+          "description": "Path to artifact"
+        },
+        "schema": {
+          "type": "object",
+          "description": "Schema for artifact validation"
+        },
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "created_by": {"type": "string"},
+            "created_at": {"type": "string", "format": "date-time"},
+            "checksum": {"type": "string"}
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "task_name": "auditoria-calidad-documentacion",
+  "description": "Auditoría de profesionalismo en documentación, detección de emojis prohibidos, actualidad, y completitud",
+  "created": "2026-01-18T14:33:09.052386",
+  "status": "in_progress",
+  "prompt_file": "prompt.md",
+  "reports": [
+    "reports/auditoria_documentacion.md"
+  ]
+}

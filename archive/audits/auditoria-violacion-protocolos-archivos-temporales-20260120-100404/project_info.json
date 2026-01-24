@@ -1,0 +1,10 @@
+{
+  "id": "auditoria-violacion-protocolos-archivos-temporales-20260120-100404",
+  "name": "Auditoria Violacion Protocolos Archivos Temporales",
+  "created": "2026-01-20T10:04:04.497857",
+  "status": "in_progress",
+  "user_request": "Auditoria completa del incidente donde se crearon archivos Python temporales en directorio raiz violando protocolos y estandares del framework",
+  "context": "Incidente critico el agente creo archivos tmp_create_tasks.py en raiz violando estructura organizada y estandares que el mismo predica. Requiere analisis profundo de causas raices y medidas preventivas.",
+  "tasks": {},
+  "synthesis": null
+}

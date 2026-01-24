@@ -55,6 +55,8 @@ This test is designed to verify that the framework correctly handles task creati
 report generation, and validation workflows. All outputs should be validated against
 the v2.2 ORGANIZED standard.
 
+---
+
 ## Layer 2: Technical Task
 
 **Objective:** Generate a test report validating framework functionality.

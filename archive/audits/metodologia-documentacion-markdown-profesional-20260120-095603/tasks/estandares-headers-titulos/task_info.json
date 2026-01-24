@@ -1,0 +1,10 @@
+{
+  "task_name": "estandares-headers-titulos",
+  "description": "Definir reglas para uso de simbolos en headers y titulos",
+  "created": "2026-01-20T09:59:08.895910",
+  "status": "in_progress",
+  "prompt_file": "prompt.md",
+  "reports": [
+    "reports/estandares_headers_titulos.md"
+  ]
+}

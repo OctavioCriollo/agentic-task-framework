@@ -11,7 +11,7 @@ FRAMEWORK_DIR="$(cd "$(dirname "$0")" && pwd)"
 CLAUDE_MD="$FRAMEWORK_DIR/CLAUDE.md"
 MEMORY_BACKUP_DIR="$FRAMEWORK_DIR/.memory_backups"
 CORE_DIR="$FRAMEWORK_DIR/core"
-VENV_DIR="$FRAMEWORK_DIR/venv"
+VENV_DIR="$FRAMEWORK_DIR/.venv"
 
 # Colors for output
 GREEN='\033[0;32m'
@@ -87,7 +87,7 @@ if [ ! -d "$VENV_DIR" ]; then
 
     # Create virtual environment
     echo -e "${BLUE}Creando entorno virtual...${NC}"
-    if ! $PYTHON_CMD -m venv "$VENV_DIR" 2>&1; then
+    if ! "$PYTHON_CMD" -m venv "$VENV_DIR" 2>&1; then
         error_exit "No se pudo crear entorno virtual.\nVerifica que Python esté correctamente instalado."
     fi
     echo -e "${GREEN}✓ Entorno virtual creado${NC}"
@@ -96,14 +96,14 @@ if [ ! -d "$VENV_DIR" ]; then
     if [ -d "$VENV_DIR" ]; then
         if [ -f "$VENV_DIR/Scripts/activate" ]; then
             source "$VENV_DIR/Scripts/activate"
-            if [ $? -eq 0 ]; then
+            if [ "$?" -eq 0 ]; then
                 echo -e "${GREEN}✓ Entorno virtual activado${NC}"
             else
                 error_exit "No se pudo activar el entorno virtual"
             fi
         elif [ -f "$VENV_DIR/bin/activate" ]; then
             source "$VENV_DIR/bin/activate"
-            if [ $? -eq 0 ]; then
+            if [ "$?" -eq 0 ]; then
                 echo -e "${GREEN}✓ Entorno virtual activado${NC}"
             else
                 error_exit "No se pudo activar el entorno virtual"
@@ -133,14 +133,14 @@ else
     echo -e "${BLUE}Activando entorno virtual...${NC}"
     if [ -f "$VENV_DIR/Scripts/activate" ]; then
         source "$VENV_DIR/Scripts/activate"
-        if [ $? -eq 0 ]; then
+        if [ "$?" -eq 0 ]; then
             echo -e "${GREEN}✓ Entorno virtual activado${NC}"
         else
             error_exit "No se pudo activar el entorno virtual"
         fi
     elif [ -f "$VENV_DIR/bin/activate" ]; then
         source "$VENV_DIR/bin/activate"
-        if [ $? -eq 0 ]; then
+        if [ "$?" -eq 0 ]; then
             echo -e "${GREEN}✓ Entorno virtual activado${NC}"
         else
             error_exit "No se pudo activar el entorno virtual"
@@ -173,8 +173,10 @@ update_memory_on_exit() {
 
     # Create final backup
     if [ -f "$CLAUDE_MD" ]; then
+        # SECURITY FIX H2: Include PID to prevent race condition
         TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-        cp "$CLAUDE_MD" "$MEMORY_BACKUP_DIR/CLAUDE_exit_$TIMESTAMP.md" 2>/dev/null
+        BACKUP_FILE="$MEMORY_BACKUP_DIR/CLAUDE_exit_${TIMESTAMP}_$$.md"
+        cp "$CLAUDE_MD" "$BACKUP_FILE" 2>/dev/null
         echo -e "${GREEN}✓ Memoria respaldada${NC}"
     fi
 
@@ -197,7 +199,7 @@ if [ ! -f "$CLAUDE_MD" ]; then
     # Initialize memory
     if [ -f "$CORE_DIR/init_memory.sh" ]; then
         bash "$CORE_DIR/init_memory.sh" "$FRAMEWORK_DIR" "coordinator"
-        if [ $? -eq 0 ]; then
+        if [ "$?" -eq 0 ]; then
             echo -e "${GREEN}✓ Memoria del coordinador inicializada${NC}"
         else
             error_exit "No se pudo inicializar la memoria del coordinador"
@@ -210,8 +212,10 @@ else
     echo -e "${GREEN}✓ Memoria del coordinador encontrada${NC}"
 
     # Create backup of current memory
+    # SECURITY FIX H2: Include PID to prevent race condition
     TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-    cp "$CLAUDE_MD" "$MEMORY_BACKUP_DIR/CLAUDE_start_$TIMESTAMP.md"
+    BACKUP_FILE="$MEMORY_BACKUP_DIR/CLAUDE_start_${TIMESTAMP}_$$.md"
+    cp "$CLAUDE_MD" "$BACKUP_FILE"
     echo -e "${GREEN}✓ Backup de seguridad creado${NC}"
     echo ""
 fi

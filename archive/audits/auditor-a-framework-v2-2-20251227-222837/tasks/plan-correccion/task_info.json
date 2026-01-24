@@ -1,0 +1,8 @@
+{
+  "task_name": "plan-correccion",
+  "description": "Plan detallado de correcciones",
+  "created": "2025-12-27T22:35:16.692115",
+  "status": "in_progress",
+  "prompt_file": "prompt.md",
+  "reports": []
+}

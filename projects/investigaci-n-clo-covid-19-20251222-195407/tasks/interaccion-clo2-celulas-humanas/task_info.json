@@ -1,0 +1,8 @@
+{
+  "task_name": "interaccion-clo2-celulas-humanas",
+  "description": "Análisis de selectividad: ClO₂ vs células humanas y estrés oxidativo celular",
+  "created": "2025-12-25T04:30:59.116365",
+  "status": "in_progress",
+  "prompt_file": "prompt.md",
+  "reports": []
+}

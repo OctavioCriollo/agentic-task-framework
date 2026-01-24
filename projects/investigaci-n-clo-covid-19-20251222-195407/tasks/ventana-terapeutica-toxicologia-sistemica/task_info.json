@@ -1,0 +1,8 @@
+{
+  "task_name": "ventana-terapeutica-toxicologia-sistemica",
+  "description": "Evaluación de ventana terapéutica y análisis riesgo-beneficio final",
+  "created": "2025-12-25T04:30:59.138129",
+  "status": "in_progress",
+  "prompt_file": "prompt.md",
+  "reports": []
+}

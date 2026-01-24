@@ -1,0 +1,10 @@
+{
+  "task_name": "analisis-protocolos-cds-concentraciones",
+  "description": "Documentación y análisis toxicológico de protocolos CDS/MMS (concentraciones, dosis, seguridad)",
+  "created": "2025-12-25T13:11:27.932760",
+  "status": "in_progress",
+  "prompt_file": "prompt.md",
+  "reports": [
+    "analisis_protocolos_cds_evaluacion_toxicologica.md"
+  ]
+}

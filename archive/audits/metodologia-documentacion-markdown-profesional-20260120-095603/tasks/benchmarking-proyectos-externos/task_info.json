@@ -1,0 +1,10 @@
+{
+  "task_name": "benchmarking-proyectos-externos",
+  "description": "Analizar estandares de documentacion en proyectos externos reconocidos",
+  "created": "2026-01-20T09:59:08.877243",
+  "status": "in_progress",
+  "prompt_file": "prompt.md",
+  "reports": [
+    "reports/benchmarking_proyectos_externos.md"
+  ]
+}

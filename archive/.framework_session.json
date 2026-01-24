@@ -1,0 +1,125 @@
+{
+  "session_id": "20260118-143308",
+  "framework_version": "2.2",
+  "created": "2026-01-18T14:33:08.987779",
+  "active_project": null,
+  "state": {
+    "project_manager_imported": false,
+    "tasks_count": 0,
+    "validation_enabled": true
+  },
+  "validation_log": [
+    {
+      "timestamp": "2026-01-18T14:33:08.988812",
+      "operation": "validate_task_creation",
+      "passed": true,
+      "messages": [
+        "Project 'auditor-a-completa-framework-v2-2-20260118-142521' does not exist yet. Ensure ProjectManager.create_project() is called first."
+      ]
+    },
+    {
+      "timestamp": "2026-01-18T14:33:09.019260",
+      "operation": "validate_task_creation",
+      "passed": true,
+      "messages": [
+        "Project 'auditor-a-completa-framework-v2-2-20260118-142521' does not exist yet. Ensure ProjectManager.create_project() is called first."
+      ]
+    },
+    {
+      "timestamp": "2026-01-18T14:33:09.050283",
+      "operation": "validate_task_creation",
+      "passed": true,
+      "messages": [
+        "Project 'auditor-a-completa-framework-v2-2-20260118-142521' does not exist yet. Ensure ProjectManager.create_project() is called first."
+      ]
+    },
+    {
+      "timestamp": "2026-01-18T14:33:09.084548",
+      "operation": "validate_task_creation",
+      "passed": true,
+      "messages": [
+        "Project 'auditor-a-completa-framework-v2-2-20260118-142521' does not exist yet. Ensure ProjectManager.create_project() is called first."
+      ]
+    },
+    {
+      "timestamp": "2026-01-18T19:17:43.236870",
+      "operation": "validate_task_creation",
+      "passed": true,
+      "messages": [
+        "Project 'auditoria-completa-framework-v2-2-verificacion-y-expansion-20260118-191536' does not exist yet. Ensure ProjectManager.create_project() is called first."
+      ]
+    },
+    {
+      "timestamp": "2026-01-18T19:17:43.262898",
+      "operation": "validate_task_creation",
+      "passed": true,
+      "messages": [
+        "Project 'auditoria-completa-framework-v2-2-verificacion-y-expansion-20260118-191536' does not exist yet. Ensure ProjectManager.create_project() is called first."
+      ]
+    },
+    {
+      "timestamp": "2026-01-18T19:17:43.289182",
+      "operation": "validate_task_creation",
+      "passed": true,
+      "messages": [
+        "Project 'auditoria-completa-framework-v2-2-verificacion-y-expansion-20260118-191536' does not exist yet. Ensure ProjectManager.create_project() is called first."
+      ]
+    },
+    {
+      "timestamp": "2026-01-20T09:59:08.857496",
+      "operation": "validate_task_creation",
+      "passed": true,
+      "messages": [
+        "Project 'metodologia-documentacion-markdown-profesional-20260120-095603' does not exist yet. Ensure ProjectManager.create_project() is called first."
+      ]
+    },
+    {
+      "timestamp": "2026-01-20T09:59:08.876236",
+      "operation": "validate_task_creation",
+      "passed": true,
+      "messages": [
+        "Project 'metodologia-documentacion-markdown-profesional-20260120-095603' does not exist yet. Ensure ProjectManager.create_project() is called first."
+      ]
+    },
+    {
+      "timestamp": "2026-01-20T09:59:08.894862",
+      "operation": "validate_task_creation",
+      "passed": true,
+      "messages": [
+        "Project 'metodologia-documentacion-markdown-profesional-20260120-095603' does not exist yet. Ensure ProjectManager.create_project() is called first."
+      ]
+    },
+    {
+      "timestamp": "2026-01-20T10:12:01.412499",
+      "operation": "validate_task_creation",
+      "passed": true,
+      "messages": [
+        "Project 'metodologia-documentacion-markdown-profesional-20260120-095603' does not exist yet. Ensure ProjectManager.create_project() is called first."
+      ]
+    },
+    {
+      "timestamp": "2026-01-20T10:12:13.639111",
+      "operation": "validate_task_creation",
+      "passed": true,
+      "messages": [
+        "Project 'metodologia-documentacion-markdown-profesional-20260120-095603' does not exist yet. Ensure ProjectManager.create_project() is called first."
+      ]
+    },
+    {
+      "timestamp": "2026-01-20T10:12:16.331589",
+      "operation": "validate_task_creation",
+      "passed": true,
+      "messages": [
+        "Project 'metodologia-documentacion-markdown-profesional-20260120-095603' does not exist yet. Ensure ProjectManager.create_project() is called first."
+      ]
+    },
+    {
+      "timestamp": "2026-01-20T10:12:18.707402",
+      "operation": "validate_task_creation",
+      "passed": true,
+      "messages": [
+        "Project 'metodologia-documentacion-markdown-profesional-20260120-095603' does not exist yet. Ensure ProjectManager.create_project() is called first."
+      ]
+    }
+  ]
+}

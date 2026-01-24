@@ -7,7 +7,7 @@
 set -e
 
 FRAMEWORK_DIR="$(cd "$(dirname "$0")" && pwd)"
-VENV_DIR="$FRAMEWORK_DIR/venv"
+VENV_DIR="$FRAMEWORK_DIR/.venv"
 
 # Colors
 GREEN='\033[0;32m'

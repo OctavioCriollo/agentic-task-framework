@@ -1,0 +1,16 @@
+{
+  "task_name": "selectividad-molecular-celular-clo2",
+  "description": "Analisis de selectividad molecular y celular: ClO2 vs virus vs celulas humanas",
+  "created": "2025-12-26T18:10:06.973061",
+  "status": "completed",
+  "prompt_file": "prompt.md",
+  "reports": [
+    "analisis_selectividad_viral_vs_humano.md",
+    "diagramas_y_modelos.md",
+    "FAQ_SELECTIVIDAD_CLO2.md",
+    "indice_general.md",
+    "README.md",
+    "RESUMEN_EJECUTIVO_SELECTIVIDAD.md"
+  ],
+  "completed_at": "2025-12-26T18:10:06.973069"
+}

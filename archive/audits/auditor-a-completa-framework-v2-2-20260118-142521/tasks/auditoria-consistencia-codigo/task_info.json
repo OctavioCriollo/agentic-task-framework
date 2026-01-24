@@ -1,0 +1,10 @@
+{
+  "task_name": "auditoria-consistencia-codigo",
+  "description": "Auditoría de implementación de correcciones, referencias legacy, code smells, y calidad de código",
+  "created": "2026-01-18T14:33:09.020864",
+  "status": "in_progress",
+  "prompt_file": "prompt.md",
+  "reports": [
+    "reports/auditoria_codigo.md"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "task_name": "auditoria-dependencias-entorno",
+  "description": "Auditoría de entorno virtual, requirements.txt, detección de contaminación global, y validación de scripts de instalación",
+  "created": "2026-01-18T14:33:09.085879",
+  "status": "in_progress",
+  "prompt_file": "prompt.md",
+  "reports": []
+}

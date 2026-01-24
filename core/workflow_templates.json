@@ -1,0 +1,306 @@
+{
+  "framework_version": "2.2",
+  "created": "2025-12-26",
+  "description": "Declarative workflow templates for Agentic Task Framework validation",
+  "workflows": {
+    "research_workflow": {
+      "description": "Standard workflow for research tasks requiring specialized agents",
+      "steps": [
+        {
+          "id": "create_project",
+          "name": "Create or Select Project",
+          "required": true,
+          "method": "ProjectManager.create_project()",
+          "validation": {
+            "pre": [
+              "ProjectManager module imported",
+              "Project name follows naming convention"
+            ],
+            "post": [
+              "project_info.json exists",
+              "context.md exists",
+              "tasks/ directory created",
+              "synthesis/ directory created"
+            ]
+          }
+        },
+        {
+          "id": "create_tasks",
+          "name": "Create Specialized Tasks",
+          "required": true,
+          "method": "ProjectManager.create_task()",
+          "validation": {
+            "pre": [
+              "Project exists and validated",
+              "Task names follow [action]-[topic]-[details] convention",
+              "Prompts follow 2-layer architecture",
+              "Using ProjectManager (NOT manual creation)"
+            ],
+            "post": [
+              "task_info.json exists for each task",
+              "prompt.md saved for each task",
+              "Task directory structure correct"
+            ]
+          }
+        },
+        {
+          "id": "get_report_paths",
+          "name": "Get Report Output Paths",
+          "required": true,
+          "method": "ProjectManager.get_task_report_path()",
+          "validation": {
+            "pre": [
+              "Tasks created with metadata"
+            ],
+            "post": [
+              "Report paths specified in task prompts"
+            ]
+          }
+        },
+        {
+          "id": "launch_agents",
+          "name": "Launch Specialized Agents",
+          "required": true,
+          "method": "Task tool with subagent_type='general-purpose'",
+          "validation": {
+            "pre": [
+              "Tasks validated with validate_agent_launch()",
+              "Metadata files exist",
+              "Prompts are executive (tell agent where to save)"
+            ],
+            "post": [
+              "Agents launched in background",
+              "Task IDs recorded"
+            ]
+          }
+        },
+        {
+          "id": "monitor_progress",
+          "name": "Monitor Agent Progress",
+          "required": false,
+          "method": "TaskOutput tool (non-blocking)",
+          "validation": {
+            "pre": [
+              "Task IDs available"
+            ],
+            "post": []
+          }
+        },
+        {
+          "id": "register_completion",
+          "name": "Register Task Completion",
+          "required": true,
+          "method": "ProjectManager.register_task_report()",
+          "validation": {
+            "pre": [
+              "Report files exist at specified paths"
+            ],
+            "post": [
+              "task_info.json updated with status='completed'",
+              "Report registered in metadata"
+            ]
+          }
+        }
+      ],
+      "validation_requirements": {
+        "project_manager_required": true,
+        "metadata_files_required": true,
+        "prompt_architecture": "2-layer",
+        "naming_convention": "[action]-[topic]-[details]"
+      }
+    },
+    "development_workflow": {
+      "description": "Workflow for code development tasks",
+      "steps": [
+        {
+          "id": "create_project",
+          "name": "Create Development Project",
+          "required": true,
+          "method": "ProjectManager.create_project()",
+          "validation": {
+            "pre": [
+              "ProjectManager module imported"
+            ],
+            "post": [
+              "project_info.json exists",
+              "context.md exists"
+            ]
+          }
+        },
+        {
+          "id": "create_tasks",
+          "name": "Create Development Tasks",
+          "required": true,
+          "method": "ProjectManager.create_task()",
+          "validation": {
+            "pre": [
+              "Task names follow convention",
+              "Prompts include code requirements"
+            ],
+            "post": [
+              "task_info.json exists",
+              "prompt.md saved"
+            ]
+          }
+        },
+        {
+          "id": "implement",
+          "name": "Implement Code",
+          "required": true,
+          "method": "Direct coding or agent delegation",
+          "validation": {
+            "pre": [
+              "Requirements clear"
+            ],
+            "post": [
+              "Code files created",
+              "Tests included"
+            ]
+          }
+        },
+        {
+          "id": "register_completion",
+          "name": "Register Completion",
+          "required": true,
+          "method": "ProjectManager.register_task_report()",
+          "validation": {
+            "pre": [
+              "Implementation complete"
+            ],
+            "post": [
+              "task_info.json updated"
+            ]
+          }
+        }
+      ],
+      "validation_requirements": {
+        "project_manager_required": true,
+        "metadata_files_required": true,
+        "prompt_architecture": "2-layer"
+      }
+    },
+    "analysis_workflow": {
+      "description": "Workflow for data analysis and evaluation tasks",
+      "steps": [
+        {
+          "id": "create_project",
+          "name": "Create Analysis Project",
+          "required": true,
+          "method": "ProjectManager.create_project()",
+          "validation": {
+            "pre": [
+              "Data sources identified"
+            ],
+            "post": [
+              "Project structure created"
+            ]
+          }
+        },
+        {
+          "id": "create_tasks",
+          "name": "Create Analysis Tasks",
+          "required": true,
+          "method": "ProjectManager.create_task()",
+          "validation": {
+            "pre": [
+              "Analysis methodology defined"
+            ],
+            "post": [
+              "Task metadata created"
+            ]
+          }
+        },
+        {
+          "id": "execute_analysis",
+          "name": "Execute Analysis",
+          "required": true,
+          "method": "Agent or direct execution",
+          "validation": {
+            "pre": [
+              "Data accessible"
+            ],
+            "post": [
+              "Results documented"
+            ]
+          }
+        },
+        {
+          "id": "synthesize",
+          "name": "Synthesize Findings",
+          "required": true,
+          "method": "Create synthesis document",
+          "validation": {
+            "pre": [
+              "All tasks completed"
+            ],
+            "post": [
+              "Synthesis in synthesis/ directory"
+            ]
+          }
+        }
+      ],
+      "validation_requirements": {
+        "project_manager_required": true,
+        "metadata_files_required": true,
+        "prompt_architecture": "2-layer"
+      }
+    }
+  },
+  "validation_hooks": {
+    "before_task_creation": [
+      "validate_task_creation()"
+    ],
+    "before_agent_launch": [
+      "validate_agent_launch()"
+    ],
+    "before_project_creation": [
+      "validate_research_request()"
+    ],
+    "after_task_completion": [
+      "validate_project_structure()"
+    ]
+  },
+  "naming_conventions": {
+    "task_name_pattern": "^[a-z0-9]+(-[a-z0-9]+)+$",
+    "task_name_format": "[action]-[topic]-[details]",
+    "examples": [
+      "analizar-selectividad-clo2",
+      "investigar-farmacocinetica-oral",
+      "evaluar-ventana-terapeutica",
+      "revisar-estudios-clinicos"
+    ],
+    "project_name_format": "[topic]-[date]",
+    "examples_project": [
+      "investigaci-n-clo-covid-19-20251222-195407"
+    ]
+  },
+  "prompt_architecture": {
+    "type": "2-layer",
+    "layer_1": {
+      "name": "Conversational Context",
+      "required_elements": [
+        "User request or context",
+        "Disclaimers (if applicable)",
+        "Supervision notes (if applicable)",
+        "Project overview"
+      ]
+    },
+    "layer_2": {
+      "name": "Technical Specification",
+      "required_elements": [
+        "Agent role definition",
+        "Specific objectives",
+        "Methodology steps",
+        "Deliverables specification",
+        "Output location (CRITICAL: where to save files)"
+      ]
+    },
+    "minimum_length": 200,
+    "style_requirements": {
+      "emojis": false,
+      "symbols": false,
+      "tone": "professional",
+      "language": "clear and direct"
+    }
+  }
+}

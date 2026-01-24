@@ -1,0 +1,10 @@
+{
+  "task_name": "verificacion-auditoria-original",
+  "description": "Verificar precision de cada hallazgo de la auditoria original contra codigo real",
+  "created": "2026-01-18T19:17:43.238067",
+  "status": "in_progress",
+  "prompt_file": "prompt.md",
+  "reports": [
+    "reports/VERIFICACION_AUDITORIA.md"
+  ]
+}

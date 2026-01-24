@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 """
-Project Manager - Sistema de Gestion de Outputs v2.2
+Project Manager - Sistema de Gestion de Outputs
 
 Este modulo gestiona la estructura de proyectos y outputs de agentes.
 Usado por el coordinador para organizar resultados de investigaciones.
-
-Framework Version: 2.2
 """
 
 import os
@@ -15,6 +13,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional
 import sys
+from core.__version__ import get_version, get_version_full
 
 # Configure logging
 logger = logging.getLogger(__name__)
@@ -194,7 +193,7 @@ class ProjectManager:
 ---
 
 **Tarea creada:** {task_name}
-**Framework:** v2.2 ORGANIZED
+**Framework:** v{get_version_full()}
 """
         return readme
 

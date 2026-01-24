@@ -4,11 +4,11 @@
 
   "permissions": {
     "allow": [
-      "Bash(git *)",
-      "Bash(python3 core/*)",
-      "Bash(python core/*)",
-      "Bash(ls *)",
-      "Bash(cd *)",
+      "Bash(git:*)",
+      "Bash(python3 core/:*)",
+      "Bash(python core/:*)",
+      "Bash(ls:*)",
+      "Bash(cd:*)",
       "Edit(CLAUDE.md)",
       "Write(CLAUDE.md)",
       "Write(core/*)",
@@ -23,9 +23,12 @@
   "hooks": {
     "SessionStart": [
       {
-        "type": "command",
-        "command": "echo '🚀 Framework Agéntico iniciado - Memoria cargada'",
-        "description": "Mensaje de bienvenida"
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '🚀 Framework Agéntico iniciado - Memoria cargada'"
+          }
+        ]
       }
     ]
   }

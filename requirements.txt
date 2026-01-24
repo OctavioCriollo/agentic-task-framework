@@ -1,8 +1,60 @@
-# Agentic Task Framework - Dependencies
-# Currently uses only Python standard library
-# No external dependencies required
+# Agentic Task Framework v2.2 - Dependencies
+# Framework Version: 2.2
+# Python Version: 3.13+ recommended
 
-# Future dependencies can be added here
-# Example:
-# requests>=2.31.0
+# ===================================================================
+# CORE FRAMEWORK: ZERO EXTERNAL DEPENDENCIES
+# ===================================================================
+#
+# The framework is designed to work with Python standard library only.
+# This ensures:
+# - No installation friction
+# - Immediate usability
+# - Maximum compatibility
+# - Minimal maintenance burden
+#
+# Core modules use only:
+# - json (data serialization)
+# - os, pathlib (file operations)
+# - datetime (timestamps)
+# - re (validation patterns)
+# - typing (type hints)
+# - argparse (CLI)
+# - sys (system operations)
+#
+# ===================================================================
+# OPTIONAL DEPENDENCIES (for enhanced features)
+# ===================================================================
+#
+# If you want enhanced validation with schema checking:
+# jsonschema>=4.20.0
+# pydantic>=2.5.0
+#
+# If you want enhanced logging:
+# structlog>=24.1.0
+#
+# If you want YAML support for configs:
 # pyyaml>=6.0
+#
+# If you want testing support (RECOMMENDED for development):
+# pytest>=9.0.0
+# pytest-cov>=7.0.0
+#
+# ===================================================================
+# INSTALLATION
+# ===================================================================
+#
+# Standard (no dependencies):
+#   Just use the framework - works immediately
+#
+# With optional enhancements:
+#   python -m venv venv
+#   source venv/Scripts/activate  # On Windows Git Bash
+#   pip install -r requirements.txt
+#
+# Note: Virtual environment (venv/) will be created automatically on
+#       first run of start_coordinator.sh. It is NOT required for core
+#       framework functionality (zero dependencies) but is provided for
+#       managing optional enhancements and testing dependencies.
+#
+# ===================================================================

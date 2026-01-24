@@ -1,0 +1,236 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://forge-framework.org/schemas/policy/v1.0",
+  "title": "Forge Policy Configuration v1.0",
+  "description": "Governance policies for task execution in Forge Framework",
+  "type": "object",
+  "required": ["version", "policies"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "policies": {
+      "type": "object",
+      "properties": {
+        "security": {
+          "$ref": "#/definitions/security_policy"
+        },
+        "resource_limits": {
+          "$ref": "#/definitions/resource_policy"
+        },
+        "quality_gates": {
+          "$ref": "#/definitions/quality_policy"
+        },
+        "compliance": {
+          "$ref": "#/definitions/compliance_policy"
+        }
+      }
+    },
+    "enforcement": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["strict", "permissive", "audit_only"],
+          "default": "strict",
+          "description": "Policy enforcement mode"
+        },
+        "on_violation": {
+          "type": "string",
+          "enum": ["abort", "warn", "log"],
+          "default": "abort"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "security_policy": {
+      "type": "object",
+      "properties": {
+        "allowed_tools": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Whitelist of allowed tools"
+        },
+        "forbidden_tools": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Blacklist of forbidden tools"
+        },
+        "allowed_domains": {
+          "type": "array",
+          "items": {"type": "string", "format": "hostname"},
+          "description": "Allowed domains for WebFetch/WebSearch"
+        },
+        "forbidden_paths": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Paths that cannot be accessed"
+        },
+        "require_sandboxing": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to require sandbox for bash commands"
+        },
+        "max_file_size_mb": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 100,
+          "description": "Maximum file size for read/write operations"
+        },
+        "credential_handling": {
+          "type": "object",
+          "properties": {
+            "allow_env_access": {"type": "boolean", "default": false},
+            "allow_credential_files": {"type": "boolean", "default": false},
+            "sensitive_patterns": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Regex patterns for sensitive data detection"
+            }
+          }
+        }
+      }
+    },
+    "resource_policy": {
+      "type": "object",
+      "properties": {
+        "max_concurrent_tasks": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 50,
+          "default": 10,
+          "description": "Maximum tasks running concurrently"
+        },
+        "max_task_duration_seconds": {
+          "type": "integer",
+          "minimum": 60,
+          "maximum": 86400,
+          "default": 3600,
+          "description": "Maximum duration for a single task"
+        },
+        "max_total_disk_mb": {
+          "type": "integer",
+          "minimum": 100,
+          "description": "Maximum disk usage for all tasks"
+        },
+        "max_memory_per_task_mb": {
+          "type": "integer",
+          "minimum": 100,
+          "description": "Maximum memory per task"
+        },
+        "max_network_calls_per_task": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Maximum network calls per task (0 = unlimited)"
+        },
+        "rate_limits": {
+          "type": "object",
+          "properties": {
+            "web_searches_per_hour": {"type": "integer"},
+            "web_fetches_per_hour": {"type": "integer"},
+            "tool_calls_per_minute": {"type": "integer"}
+          }
+        }
+      }
+    },
+    "quality_policy": {
+      "type": "object",
+      "properties": {
+        "mandatory_checks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["length", "format", "schema", "content_validation", "reference_check", "completeness"]
+          },
+          "description": "Quality checks that must be performed"
+        },
+        "minimum_output_length": {
+          "type": "integer",
+          "minimum": 100,
+          "default": 1000,
+          "description": "Minimum length for markdown outputs"
+        },
+        "require_references": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether references are mandatory for research tasks"
+        },
+        "require_structure_compliance": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enforce v2.2 ORGANIZED structure"
+        },
+        "custom_validators": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "type"],
+            "properties": {
+              "name": {"type": "string"},
+              "type": {"type": "string"},
+              "config": {"type": "object"}
+            }
+          }
+        }
+      }
+    },
+    "compliance_policy": {
+      "type": "object",
+      "properties": {
+        "framework_version": {
+          "type": "string",
+          "description": "Required framework version"
+        },
+        "structure_standard": {
+          "type": "string",
+          "enum": ["v2.2_ORGANIZED"],
+          "default": "v2.2_ORGANIZED",
+          "description": "Directory structure standard to enforce"
+        },
+        "required_metadata_files": {
+          "type": "array",
+          "items": {"type": "string"},
+          "default": ["task_info.json", "prompt.md", "README.md"],
+          "description": "Metadata files that must exist"
+        },
+        "naming_conventions": {
+          "type": "object",
+          "properties": {
+            "tasks": {
+              "type": "string",
+              "default": "kebab-case",
+              "enum": ["kebab-case", "snake_case", "camelCase"]
+            },
+            "reports": {
+              "type": "string",
+              "default": "snake_case",
+              "enum": ["kebab-case", "snake_case", "camelCase"]
+            }
+          }
+        },
+        "audit_requirements": {
+          "type": "object",
+          "properties": {
+            "log_all_actions": {"type": "boolean", "default": true},
+            "create_checksums": {"type": "boolean", "default": true},
+            "retention_days": {"type": "integer", "minimum": 1, "default": 90}
+          }
+        },
+        "writing_style": {
+          "type": "object",
+          "properties": {
+            "allow_emojis": {"type": "boolean", "default": false},
+            "allow_symbols": {"type": "boolean", "default": false},
+            "tone": {
+              "type": "string",
+              "enum": ["professional", "casual", "technical"],
+              "default": "professional"
+            }
+          }
+        }
+      }
+    }
+  }
+}

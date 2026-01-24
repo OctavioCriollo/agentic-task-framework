@@ -1,0 +1,67 @@
+{
+  "id": "auditor-a-framework-v2-2-20251227-222837",
+  "name": "Auditoría Framework v2.2",
+  "created": "2025-12-27T22:28:37.368659",
+  "status": "in_progress",
+  "user_request": "Realizar auditoría completa del framework v2.2 para identificar\n    inconsistencias, validar cumplimiento de estándares, y preparar baseline limpio\n    antes de migración a Forge v1.0.",
+  "context": "Este proyecto tiene 6 tareas especializadas en 3 fases:\n\nFASE 1 (Paralelo):\n- Auditoría Documentación Core\n- Auditoría Código Core\n- Auditoría Estructura de Proyectos\n\nFASE 2:\n- Identificación de Inconsistencias Cross-System\n\nFASE 3:\n- Plan de Corrección\n- Validación Post-Corrección\n\nObjetivo: Tener framework v2.2 100% consistente antes de implementar Forge v1.0.",
+  "tasks": {
+    "auditoria-documentacion": {
+      "task_name": "auditoria-documentacion",
+      "description": "Auditoría de documentación core del framework",
+      "created": "2025-12-27T22:35:16.605367",
+      "status": "in_progress",
+      "prompt_file": "prompt.md",
+      "reports": []
+    },
+    "auditoria-codigo": {
+      "task_name": "auditoria-codigo",
+      "description": "Auditoría de código Python en core/",
+      "created": "2025-12-27T22:35:16.624273",
+      "status": "in_progress",
+      "prompt_file": "prompt.md",
+      "reports": []
+    },
+    "auditoria-estructura": {
+      "task_name": "auditoria-estructura",
+      "description": "Auditoría de estructura del proyecto COVID",
+      "created": "2025-12-27T22:35:16.653800",
+      "status": "in_progress",
+      "prompt_file": "prompt.md",
+      "reports": []
+    },
+    "identificacion-inconsistencias": {
+      "task_name": "identificacion-inconsistencias",
+      "description": "Identificación de inconsistencias cross-system",
+      "created": "2025-12-27T22:35:16.673289",
+      "status": "in_progress",
+      "prompt_file": "prompt.md",
+      "reports": []
+    },
+    "plan-correccion": {
+      "task_name": "plan-correccion",
+      "description": "Plan detallado de correcciones",
+      "created": "2025-12-27T22:35:16.692115",
+      "status": "in_progress",
+      "prompt_file": "prompt.md",
+      "reports": []
+    },
+    "validacion-final": {
+      "task_name": "validacion-final",
+      "description": "Suite de validación post-corrección",
+      "created": "2025-12-27T22:35:16.713318",
+      "status": "in_progress",
+      "prompt_file": "prompt.md",
+      "reports": []
+    },
+    "auditoria-arquitectura-sistema": {
+      "task_name": "auditoria-arquitectura-sistema",
+      "description": "Auditoría arquitectónica del framework v2.2 actual",
+      "created": "2025-12-27T22:43:10.378257",
+      "status": "in_progress",
+      "prompt_file": "prompt.md",
+      "reports": []
+    }
+  },
+  "synthesis": null
+}

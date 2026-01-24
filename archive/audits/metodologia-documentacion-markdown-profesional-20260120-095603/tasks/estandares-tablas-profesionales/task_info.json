@@ -1,0 +1,8 @@
+{
+  "task_name": "estandares-tablas-profesionales",
+  "description": "Establecer formato estandar para tablas con simbolos y alineacion",
+  "created": "2026-01-20T10:12:01.413663",
+  "status": "in_progress",
+  "prompt_file": "prompt.md",
+  "reports": []
+}

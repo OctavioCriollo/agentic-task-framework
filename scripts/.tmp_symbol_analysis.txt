@@ -1,0 +1,37 @@
+TOP 30 SÍMBOLOS MÁS USADOS EN FRAMEWORK
+============================================================
+
+✅ (U+2705) -  1671 veces - WHITE HEAVY CHECK MARK
+→ (U+2192) -  1189 veces - RIGHTWARDS ARROW
+❌ (U+274C) -   674 veces - CROSS MARK
+✓ (U+2713) -   589 veces - CHECK MARK
+✗ (U+2717) -   143 veces - BALLOT X
+← (U+2190) -   114 veces - LEFTWARDS ARROW
+• (U+2022) -   112 veces - BULLET
+⚠ (U+26A0) -    99 veces - WARNING SIGN
+★ (U+2605) -    70 veces - BLACK STAR
+🟡 (U+1F7E1) -    52 veces - LARGE YELLOW CIRCLE
+↓ (U+2193) -    46 veces - DOWNWARDS ARROW
+⚪ (U+26AA) -    42 veces - MEDIUM WHITE CIRCLE
+☆ (U+2606) -    34 veces - WHITE STAR
+🚀 (U+1F680) -    32 veces - ROCKET
+⚡ (U+26A1) -    26 veces - HIGH VOLTAGE SIGN
+🔘 (U+1F518) -    25 veces - RADIO BUTTON
+↕ (U+2195) -    22 veces - UP DOWN ARROW
+🎉 (U+1F389) -    19 veces - PARTY POPPER
+⚫ (U+26AB) -    17 veces - MEDIUM BLACK CIRCLE
+💻 (U+1F4BB) -    16 veces - PERSONAL COMPUTER
+🟢 (U+1F7E2) -    16 veces - LARGE GREEN CIRCLE
+🟠 (U+1F7E0) -    14 veces - LARGE ORANGE CIRCLE
+📊 (U+1F4CA) -    13 veces - BAR CHART
+🔴 (U+1F534) -    12 veces - LARGE RED CIRCLE
+↔ (U+2194) -    11 veces - LEFT RIGHT ARROW
+✨ (U+2728) -    11 veces - SPARKLES
+❓ (U+2753) -    10 veces - BLACK QUESTION MARK ORNAMENT
+📁 (U+1F4C1) -    10 veces - FILE FOLDER
+— (U+2014) -     9 veces - EM DASH
+🎊 (U+1F38A) -     8 veces - CONFETTI BALL
+
+
+TOTAL DOCUMENTOS: 178
+TOTAL SÍMBOLOS ÚNICOS: 103

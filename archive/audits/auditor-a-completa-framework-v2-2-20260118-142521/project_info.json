@@ -1,0 +1,43 @@
+{
+  "id": "auditor-a-completa-framework-v2-2-20260118-142521",
+  "name": "Auditoría Completa Framework v2.2",
+  "created": "2026-01-18T14:25:21.692931",
+  "status": "in_progress",
+  "user_request": "Realizar auditoría exhaustiva del framework completo: arquitectura, código, documentación, y dependencias. Identificar inconsistencias, propagación incorrecta de cambios, documentación no profesional, y cualquier deuda técnica.",
+  "context": "El usuario requiere evaluación crítica y completa del sistema para validar que todas las mejoras aplicadas se propagaron correctamente y que no hay inconsistencias.",
+  "tasks": {
+    "auditoria-arquitectura-estructura": {
+      "task_name": "auditoria-arquitectura-estructura",
+      "description": "Auditoría exhaustiva de estructura de directorios, conformidad con v2.2 ORGANIZED, archivos huérfanos, e incoherencias",
+      "created": "2026-01-18T14:33:08.990421",
+      "status": "in_progress",
+      "prompt_file": "prompt.md",
+      "reports": []
+    },
+    "auditoria-consistencia-codigo": {
+      "task_name": "auditoria-consistencia-codigo",
+      "description": "Auditoría de implementación de correcciones, referencias legacy, code smells, y calidad de código",
+      "created": "2026-01-18T14:33:09.020864",
+      "status": "in_progress",
+      "prompt_file": "prompt.md",
+      "reports": []
+    },
+    "auditoria-calidad-documentacion": {
+      "task_name": "auditoria-calidad-documentacion",
+      "description": "Auditoría de profesionalismo en documentación, detección de emojis prohibidos, actualidad, y completitud",
+      "created": "2026-01-18T14:33:09.052386",
+      "status": "in_progress",
+      "prompt_file": "prompt.md",
+      "reports": []
+    },
+    "auditoria-dependencias-entorno": {
+      "task_name": "auditoria-dependencias-entorno",
+      "description": "Auditoría de entorno virtual, requirements.txt, detección de contaminación global, y validación de scripts de instalación",
+      "created": "2026-01-18T14:33:09.085879",
+      "status": "in_progress",
+      "prompt_file": "prompt.md",
+      "reports": []
+    }
+  },
+  "synthesis": null
+}

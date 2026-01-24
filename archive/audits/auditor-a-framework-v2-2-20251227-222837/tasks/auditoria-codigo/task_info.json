@@ -1,0 +1,11 @@
+{
+  "task_name": "auditoria-codigo",
+  "description": "Auditoría de código Python en core/",
+  "created": "2025-12-27T22:35:16.624273",
+  "status": "completed",
+  "prompt_file": "prompt.md",
+  "reports": [
+    "reports/analisis_codigo_python.md"
+  ],
+  "completed_at": "2025-12-27T23:15:00.000000"
+}

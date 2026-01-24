@@ -1,0 +1,35 @@
+{
+  "id": "auditor-as-enero-2026-retroactivo-20260117-125539",
+  "name": "Auditorías Enero 2026 (Retroactivo)",
+  "created": "2026-01-17T12:55:39.818147",
+  "status": "in_progress",
+  "user_request": "Documentar retroactivamente las auditorías realizadas del 14-17 de enero de 2026.\n\nEstas auditorías se realizaron inmediatamente después de implementar ProjectManager,\npor lo que los prompts no fueron guardados formalmente. Este proyecto reconstruye\nlos prompts basándose en el contenido de los reportes generados para establecer\ntrazabilidad completa.",
+  "context": "Contexto histórico:\n- 14 Enero: Primera auditoría completa (28 problemas identificados)\n- 14 Enero: Auditoría sistémica del proyecto YouTube (5 fallos críticos)\n- 15 Enero: Análisis exhaustivo con agente ae7984d (42 páginas)\n- 16 Enero: Auditoría de virtual environment (problema sistémico)\n- 17 Enero: Review completo histórico\n\nEste proyecto es RETROACTIVO - los reportes ya existen en reports/,\neste proyecto solo documenta los prompts que debieron haberse guardado.",
+  "tasks": {
+    "auditoria-framework-completa-20260114": {
+      "task_name": "auditoria-framework-completa-20260114",
+      "description": "Auditoría exhaustiva del framework v2.2 - 28 problemas identificados",
+      "created": "2026-01-17T12:55:39.862530",
+      "status": "in_progress",
+      "prompt_file": "prompt.md",
+      "reports": []
+    },
+    "auditoria-sistemica-youtube-20260114": {
+      "task_name": "auditoria-sistemica-youtube-20260114",
+      "description": "Auditoría sistémica post-mortem del proyecto YouTube - 5 fallos críticos",
+      "created": "2026-01-17T12:55:39.902848",
+      "status": "in_progress",
+      "prompt_file": "prompt.md",
+      "reports": []
+    },
+    "analisis-exhaustivo-framework-20260115": {
+      "task_name": "analisis-exhaustivo-framework-20260115",
+      "description": "Análisis exhaustivo de 42 páginas por agente ae7984d",
+      "created": "2026-01-17T12:55:39.937617",
+      "status": "in_progress",
+      "prompt_file": "prompt.md",
+      "reports": []
+    }
+  },
+  "synthesis": null
+}

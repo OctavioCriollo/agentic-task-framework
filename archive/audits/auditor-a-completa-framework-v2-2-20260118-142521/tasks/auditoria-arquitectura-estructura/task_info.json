@@ -1,0 +1,8 @@
+{
+  "task_name": "auditoria-arquitectura-estructura",
+  "description": "Auditoría exhaustiva de estructura de directorios, conformidad con v2.2 ORGANIZED, archivos huérfanos, e incoherencias",
+  "created": "2026-01-18T14:33:08.990421",
+  "status": "in_progress",
+  "prompt_file": "prompt.md",
+  "reports": []
+}

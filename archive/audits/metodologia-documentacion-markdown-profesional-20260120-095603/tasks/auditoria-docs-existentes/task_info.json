@@ -1,0 +1,8 @@
+{
+  "task_name": "auditoria-docs-existentes",
+  "description": "Auditar documentacion existente vs nuevos estandares y corregir",
+  "created": "2026-01-20T10:12:18.708537",
+  "status": "in_progress",
+  "prompt_file": "prompt.md",
+  "reports": []
+}

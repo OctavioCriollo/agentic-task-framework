@@ -1,0 +1,105 @@
+{
+  "id": "investigaci-n-clo-covid-19-20251222-195407",
+  "name": "Investigación ClO₂ COVID-19",
+  "created": "2025-12-22T19:54:07.400509",
+  "status": "completed",
+  "user_request": "Investiga efectividad del dióxido de cloro contra COVID-19.\n\n    Instrucciones del usuario:\n    - \"Sé neutral como científico\"\n    - \"Solo evidencia científica\"\n    - \"Todo excepto historia y controversia\"\n    - \"Me interesan los mecanismos moleculares\"\n    ",
+  "context": "Este es un proyecto académico de investigación científica supervisado.\n\n    Enfoque requerido:\n    - Investigación científica neutral y objetiva\n    - Basado en literatura peer-reviewed\n    - Sin debates políticos o regulatorios\n    - Solo mecanismos moleculares y evidencia in vitro\n    ",
+  "completed_at": "2025-12-22T19:54:07.526577",
+  "tasks": {
+    "analisis-quimica-molecular-clo2": {
+      "task_name": "analisis-quimica-molecular-clo2",
+      "description": "Analisis de quimica molecular del ClO2",
+      "created": "2025-12-21T21:43:00",
+      "status": "completed",
+      "completed_at": "2025-12-21T22:14:00",
+      "prompt_file": "prompt.md",
+      "reports": [
+        "quimica_molecular_clo2.md"
+      ]
+    },
+    "toxicologia-bioquimica": {
+      "task_name": "toxicologia-bioquimica",
+      "description": "Analisis de toxicologia y bioquimica del ClO2",
+      "created": "2025-12-21T21:43:00",
+      "status": "completed",
+      "completed_at": "2025-12-21T22:14:00",
+      "prompt_file": "prompt.md",
+      "reports": [
+        "toxicologia_bioquimica_clo2.md"
+      ]
+    },
+    "virologia-sars-cov2": {
+      "task_name": "virologia-sars-cov2",
+      "description": "Analisis virologico de SARS-CoV-2 y mecanismos de inactivacion",
+      "created": "2025-12-21T21:43:00",
+      "status": "completed",
+      "completed_at": "2025-12-21T22:14:00",
+      "prompt_file": "prompt.md",
+      "reports": [
+        "virologia_sars_cov2.md",
+        "reports/virologia_molecular_sars_cov2.md",
+        "reports/mecanismos_inactivacion_clo2.md",
+        "reports/analisis_comparativo.md",
+        "reports/completion_report.md",
+        "reports/README.md"
+      ]
+    },
+    "virologia-influenza-h3n2": {
+      "task_name": "virologia-influenza-h3n2",
+      "description": "Analisis de resurgencia post-COVID de Influenza H3N2",
+      "created": "2025-12-21T21:43:00",
+      "status": "completed",
+      "completed_at": "2025-12-21T22:14:00",
+      "prompt_file": "prompt.md",
+      "reports": [
+        "resurgencia_post_covid_h3n2.md"
+      ]
+    },
+    "interaccion-clo2-hemoglobina-sangre": {
+      "task_name": "interaccion-clo2-hemoglobina-sangre",
+      "description": "Análisis bioquímico de interacción ClO₂ con hemoglobina y componentes sanguíneos",
+      "created": "2025-12-25T04:30:59.114082",
+      "status": "in_progress",
+      "prompt_file": "prompt.md",
+      "reports": []
+    },
+    "interaccion-clo2-celulas-humanas": {
+      "task_name": "interaccion-clo2-celulas-humanas",
+      "description": "Análisis de selectividad: ClO₂ vs células humanas y estrés oxidativo celular",
+      "created": "2025-12-25T04:30:59.116365",
+      "status": "in_progress",
+      "prompt_file": "prompt.md",
+      "reports": []
+    },
+    "farmacocinetica-clo2-patogenos-invivo": {
+      "task_name": "farmacocinetica-clo2-patogenos-invivo",
+      "description": "Análisis farmacocinético: distribución de ClO₂ y acceso a patógenos in vivo",
+      "created": "2025-12-25T04:30:59.127016",
+      "status": "in_progress",
+      "prompt_file": "prompt.md",
+      "reports": []
+    },
+    "ventana-terapeutica-toxicologia-sistemica": {
+      "task_name": "ventana-terapeutica-toxicologia-sistemica",
+      "description": "Evaluación de ventana terapéutica y análisis riesgo-beneficio final",
+      "created": "2025-12-25T04:30:59.138129",
+      "status": "in_progress",
+      "prompt_file": "prompt.md",
+      "reports": []
+    },
+    "analisis-protocolos-cds-concentraciones": {
+      "task_name": "analisis-protocolos-cds-concentraciones",
+      "description": "Documentación y análisis toxicológico de protocolos CDS/MMS (concentraciones, dosis, seguridad)",
+      "created": "2025-12-25T13:11:27.932760",
+      "status": "in_progress",
+      "prompt_file": "prompt.md",
+      "reports": []
+    }
+  },
+  "synthesis": {
+    "filename": "sintesis_investigacion_clo2_covid19.md",
+    "path": "projects\\investigaci-n-clo-covid-19-20251222-195407\\synthesis\\sintesis_investigacion_clo2_covid19.md",
+    "completed_at": "2025-12-22T19:54:00"
+  }
+}

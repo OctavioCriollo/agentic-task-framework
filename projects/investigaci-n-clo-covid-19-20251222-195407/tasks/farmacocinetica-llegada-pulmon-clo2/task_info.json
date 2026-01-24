@@ -1,0 +1,11 @@
+{
+  "task_name": "farmacocinetica-llegada-pulmon-clo2",
+  "description": "Analisis farmacocinetico: concentraciones de ClO2 que llegan al pulmon",
+  "created": "2025-12-26T18:10:06.969706",
+  "status": "completed",
+  "prompt_file": "prompt.md",
+  "reports": [
+    "analisis_farmacocinetico_concentraciones_pulmonares.md"
+  ],
+  "completed_at": "2025-12-26T18:10:06.969745"
+}

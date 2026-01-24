@@ -1,0 +1,321 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://forge-framework.org/schemas/evidence/v1.0",
+  "title": "Forge Evidence Record v1.0",
+  "description": "Immutable audit trail for task execution in Forge Framework",
+  "type": "object",
+  "required": ["version", "record_id", "event_type", "timestamp"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "record_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for this evidence record"
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "workgraph_declared",
+        "workgraph_validated",
+        "execution_plan_created",
+        "task_started",
+        "task_completed",
+        "task_failed",
+        "task_retried",
+        "checkpoint_created",
+        "gate_evaluated",
+        "policy_violation",
+        "quality_check_performed",
+        "artifact_created",
+        "artifact_modified",
+        "rollback_initiated",
+        "execution_aborted"
+      ],
+      "description": "Type of event being recorded"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this event occurred (ISO 8601)"
+    },
+    "actor": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["coordinator", "agent", "policy_kernel", "user", "system"],
+          "description": "Who/what performed the action"
+        },
+        "id": {
+          "type": "string",
+          "description": "Identifier of the actor"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Additional actor information"
+        }
+      }
+    },
+    "context": {
+      "type": "object",
+      "required": ["workgraph_id"],
+      "properties": {
+        "workgraph_id": {
+          "type": "string",
+          "description": "Reference to WorkGraph"
+        },
+        "project_id": {
+          "type": "string",
+          "description": "Reference to project"
+        },
+        "task_id": {
+          "type": "string",
+          "description": "Reference to specific task (if applicable)"
+        },
+        "stage_id": {
+          "type": "integer",
+          "description": "Execution stage (if applicable)"
+        }
+      }
+    },
+    "payload": {
+      "type": "object",
+      "description": "Event-specific data",
+      "oneOf": [
+        {"$ref": "#/definitions/workgraph_event"},
+        {"$ref": "#/definitions/task_event"},
+        {"$ref": "#/definitions/checkpoint_event"},
+        {"$ref": "#/definitions/policy_event"},
+        {"$ref": "#/definitions/quality_event"},
+        {"$ref": "#/definitions/artifact_event"}
+      ]
+    },
+    "chain": {
+      "type": "object",
+      "properties": {
+        "previous_record_id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Previous record in chain for this context"
+        },
+        "previous_record_hash": {
+          "type": "string",
+          "description": "Hash of previous record for integrity"
+        },
+        "sequence_number": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Sequence in the chain"
+        }
+      },
+      "description": "Chain linkage for immutability verification"
+    },
+    "integrity": {
+      "type": "object",
+      "required": ["hash"],
+      "properties": {
+        "hash": {
+          "type": "string",
+          "description": "SHA-256 hash of this record"
+        },
+        "signature": {
+          "type": "string",
+          "description": "Optional cryptographic signature"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "workgraph_event": {
+      "type": "object",
+      "properties": {
+        "workgraph": {
+          "type": "object",
+          "description": "Full or partial WorkGraph definition"
+        },
+        "validation_results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "validator": {"type": "string"},
+              "passed": {"type": "boolean"},
+              "message": {"type": "string"}
+            }
+          }
+        },
+        "compilation_info": {
+          "type": "object",
+          "properties": {
+            "total_stages": {"type": "integer"},
+            "total_tasks": {"type": "integer"},
+            "estimated_duration": {"type": "integer"}
+          }
+        }
+      }
+    },
+    "task_event": {
+      "type": "object",
+      "properties": {
+        "task_id": {
+          "type": "string"
+        },
+        "state_transition": {
+          "type": "object",
+          "properties": {
+            "from": {"type": "string"},
+            "to": {"type": "string"}
+          }
+        },
+        "runtime_metrics": {
+          "type": "object",
+          "properties": {
+            "duration_seconds": {"type": "integer"},
+            "memory_used_mb": {"type": "number"},
+            "tool_calls": {"type": "integer"},
+            "network_calls": {"type": "integer"}
+          }
+        },
+        "outputs_produced": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "path": {"type": "string"},
+              "checksum": {"type": "string"},
+              "size_bytes": {"type": "integer"}
+            }
+          }
+        },
+        "error_info": {
+          "type": "object",
+          "properties": {
+            "error_type": {"type": "string"},
+            "message": {"type": "string"},
+            "stack_trace": {"type": "string"},
+            "recovery_action": {"type": "string"}
+          }
+        }
+      }
+    },
+    "checkpoint_event": {
+      "type": "object",
+      "properties": {
+        "checkpoint_id": {
+          "type": "string"
+        },
+        "trigger": {
+          "type": "string"
+        },
+        "state_snapshot": {
+          "type": "object",
+          "description": "Complete execution state"
+        },
+        "artifacts_included": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "artifact_id": {"type": "string"},
+              "checksum": {"type": "string"}
+            }
+          }
+        },
+        "size_mb": {
+          "type": "number"
+        }
+      }
+    },
+    "policy_event": {
+      "type": "object",
+      "properties": {
+        "policy_type": {
+          "type": "string",
+          "enum": ["security", "resource", "quality", "compliance"]
+        },
+        "policy_name": {
+          "type": "string"
+        },
+        "violation": {
+          "type": "object",
+          "properties": {
+            "rule": {"type": "string"},
+            "expected": {"type": "string"},
+            "actual": {"type": "string"},
+            "severity": {"type": "string"}
+          }
+        },
+        "action_taken": {
+          "type": "string",
+          "enum": ["aborted", "warned", "logged", "continued"]
+        }
+      }
+    },
+    "quality_event": {
+      "type": "object",
+      "properties": {
+        "check_type": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string",
+          "description": "What was being checked (file path, artifact, etc.)"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "criterion": {"type": "string"},
+              "passed": {"type": "boolean"},
+              "expected": {},
+              "actual": {},
+              "severity": {"type": "string"}
+            }
+          }
+        },
+        "overall_passed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "artifact_event": {
+      "type": "object",
+      "properties": {
+        "artifact_id": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string",
+          "enum": ["created", "modified", "deleted", "validated", "referenced"]
+        },
+        "path": {
+          "type": "string"
+        },
+        "checksum_before": {
+          "type": "string",
+          "description": "Checksum before modification (if applicable)"
+        },
+        "checksum_after": {
+          "type": "string",
+          "description": "Checksum after modification"
+        },
+        "size_bytes": {
+          "type": "integer"
+        },
+        "validation_result": {
+          "type": "object",
+          "properties": {
+            "schema_valid": {"type": "boolean"},
+            "format_valid": {"type": "boolean"},
+            "errors": {"type": "array", "items": {"type": "string"}}
+          }
+        }
+      }
+    }
+  }
+}

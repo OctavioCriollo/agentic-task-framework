@@ -1,0 +1,8 @@
+{
+  "task_name": "interaccion-clo2-hemoglobina-sangre",
+  "description": "Análisis bioquímico de interacción ClO₂ con hemoglobina y componentes sanguíneos",
+  "created": "2025-12-25T04:30:59.114082",
+  "status": "in_progress",
+  "prompt_file": "prompt.md",
+  "reports": []
+}

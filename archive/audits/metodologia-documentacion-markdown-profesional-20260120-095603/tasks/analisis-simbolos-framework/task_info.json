@@ -1,0 +1,10 @@
+{
+  "task_name": "analisis-simbolos-framework",
+  "description": "Analizar uso actual de simbolos en documentacion del framework",
+  "created": "2026-01-20T09:59:08.858675",
+  "status": "in_progress",
+  "prompt_file": "prompt.md",
+  "reports": [
+    "reports/analisis_simbolos_actuales.md"
+  ]
+}

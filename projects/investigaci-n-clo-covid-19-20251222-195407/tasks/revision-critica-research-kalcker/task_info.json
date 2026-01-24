@@ -1,0 +1,11 @@
+{
+  "task_name": "revision-critica-research-kalcker",
+  "description": "Revision critica de estudios de investigacion sobre ClO2 (referencia: Kalcker)",
+  "created": "2025-12-26T18:10:06.975858",
+  "status": "completed",
+  "prompt_file": "prompt.md",
+  "reports": [
+    "revision_critica_evidencia_kalcker.md"
+  ],
+  "completed_at": "2025-12-26T18:10:06.975864"
+}

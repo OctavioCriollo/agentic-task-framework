@@ -1,0 +1,10 @@
+{
+  "task_name": "analisis-seguridad-calidad",
+  "description": "Analisis profundo de vulnerabilidades de seguridad, anti-patrones, y gaps de testing",
+  "created": "2026-01-18T19:17:43.264090",
+  "status": "in_progress",
+  "prompt_file": "prompt.md",
+  "reports": [
+    "reports/ANALISIS_SEGURIDAD_CALIDAD.md"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "task_name": "auditoria-sistemica-youtube-20260114",
+  "description": "Auditoría sistémica post-mortem del proyecto YouTube - 5 fallos críticos",
+  "created": "2026-01-17T12:55:39.902848",
+  "status": "in_progress",
+  "prompt_file": "prompt.md",
+  "reports": []
+}

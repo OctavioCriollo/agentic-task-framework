@@ -1,0 +1,11 @@
+{
+  "task_name": "virologia-influenza-h3n2",
+  "description": "Analisis de resurgencia post-COVID de Influenza H3N2",
+  "created": "2025-12-21T21:43:00",
+  "status": "completed",
+  "completed_at": "2025-12-21T22:14:00",
+  "prompt_file": "prompt.md",
+  "reports": [
+    "resurgencia_post_covid_h3n2.md"
+  ]
+}

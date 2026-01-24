@@ -1,0 +1,11 @@
+{
+  "task_name": "toxicologia-bioquimica",
+  "description": "Analisis de toxicologia y bioquimica del ClO2",
+  "created": "2025-12-21T21:43:00",
+  "status": "completed",
+  "completed_at": "2025-12-21T22:14:00",
+  "prompt_file": "prompt.md",
+  "reports": [
+    "toxicologia_bioquimica_clo2.md"
+  ]
+}

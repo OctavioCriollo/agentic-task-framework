@@ -1,0 +1,8 @@
+{
+  "task_name": "estandares-listas-checklists",
+  "description": "Definir cuando usar cada tipo de lista y simbolos apropiados",
+  "created": "2026-01-20T10:12:13.640506",
+  "status": "in_progress",
+  "prompt_file": "prompt.md",
+  "reports": []
+}
