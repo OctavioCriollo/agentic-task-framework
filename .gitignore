@@ -22,6 +22,17 @@ tasks/*/context/
 *.tmp
 *.log
 
+# Test coverage and session files
+.coverage
+htmlcov/
+.pytest_cache/
+.framework_session.json
+
+# Backup files
+*.backup
+*.bak
+*~
+
 # OS specific
 .DS_Store
 Thumbs.db
